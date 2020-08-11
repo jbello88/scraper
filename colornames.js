@@ -14,8 +14,10 @@ const puppeteer = require('puppeteer');
 
     const colors = await page.evaluate(async () => Array.from(document.querySelectorAll(".et_pb_module_header a")).map(a => a.textContent));
 
-    const json = JSON.stringify(colors);
+    const json = JSON.stringify(colors, null, '\t');
     console.log(json);
+
+    fs.writeFileSync("colors.json", json);
 
     await browser.close();
 })();  
